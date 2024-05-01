@@ -20,7 +20,7 @@ Please ensure that these toolboxes are installed in your MATLAB environment befo
 ## Usage
 
 Follow the on-screen instructions to load your image data and perform single emitter localization using the provided tools and algorithms.
-The manual for the usage is under the development. More details on all steps of analysis and use cases are being added.
+The manual for the usage ([NanoLoci_manual_30_04_24.pdf](https://github.com/nanoRuby/NanoLoci/blob/31dd0ffddf2a4a20106b4d65f7d4ce12d40d986d/NanoLoci_manual_30_04_24.pdf)) is under the development. More details on all steps of analysis and use cases are being added.
 
 ## Compatibility
 
