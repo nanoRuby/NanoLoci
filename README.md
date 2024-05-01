@@ -1,4 +1,4 @@
-# nanoLoci vs 1.0
+# nanoLoci 1.0
 
 ## Overview
 
