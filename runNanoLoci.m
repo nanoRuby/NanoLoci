@@ -27,4 +27,4 @@ addpath(genpath(parentFolder));
 
 % Now that the folder is added to the path, you can use it to access other files
 % For example, you can open your MATLAB App (.mlapp) file
-run(fullfile(parentFolder, 'nanoLoci.mlapp'));
+run(fullfile('nanoLoci.mlapp'));
