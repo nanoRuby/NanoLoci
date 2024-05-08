@@ -4,6 +4,7 @@
 %   generates a binary mask (imF) indicating the location of spots and
 %   calculates the mean background intensity (bgInt) of the image.
 function [ampS,ampMax,imF,bgInt]= amp_calc(im,xLoc,yLoc,sigX,sigY)
+%% Inputs and Outputs:
 %   Inputs:
 %       - im: Input image containing spots.
 %       - xLoc: X-coordinates of the spots.

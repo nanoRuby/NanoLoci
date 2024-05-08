@@ -1,4 +1,15 @@
+%% General plot update function:
+% Updates visualization plot in the application interface based on user interactions, 
+% including slider adjustments, image selection, and detection display with optional 
+% outlier handling.
+
 function update_plot(app)
+%% Inputs and Outputs:
+    % Input:
+    %   - app: Application object containing data and GUI elements
+    % Output:
+    %   - None (The function updates the visualization plot directly within 
+    % the application interface)
     %% first update Sliders based on the current image
 
     SliderControl.updateLimits(size(app.images.imCurrent,3),app.SliderFr);

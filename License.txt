@@ -1,3 +1,13 @@
+gnu licence
+% This software is provided with GNU 3.0 license. See license file for more
+% information.
+% If you use this software, please cite the following paper:
+%       Rubina Davtyan, Nicklas Anttu, Julia Valderas-Gutiérrez, Fredrik
+%       Höök, and Heiner Linke. "Image analysis optimization for
+%       nanowire-based optical detection of molecules." [submitted to...], 2024.
+% (c) 2024 Rubina Davtyan. All rights reserved.
+
+
 If not stated otherwise, all files are under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
 You can find a copy of the license at <http://www.gnu.org/licenses/>.

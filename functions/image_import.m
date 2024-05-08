@@ -1,6 +1,15 @@
-%% This function prompots user selection window for either one or multiple images%%
-% output: image or imagedataset path and filename
+%% This function prompts the user to select one or multiple images
+
 function filename = image_import(imageNum)
+%% Inputs and Outputs:
+% Inputs:
+%   - imageNum: 'one' for selecting one image, 'multi' for selecting multiple images
+%
+% Output:
+%   - filename: Path(s) of the selected image(s)
+% output: image or imagedataset path and filename
+
+%% % Prompt user based on input
     switch imageNum
         case 'one'
             filespec = {'*.jpg;*.tif;*.png;*.gif','All Image Files'};
@@ -10,8 +19,7 @@ function filename = image_import(imageNum)
                 ,'MultiSelect','on');
     end
 
-    % check the pathname to be sure that the user didn't cancel the
-    % dialog window
+    % Check if pathname is valid (user didn't cancel dialog window)
     if ischar(p)
     % if only one image is imported
         if ischar(f)

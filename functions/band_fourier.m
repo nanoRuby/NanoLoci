@@ -1,4 +1,6 @@
-%% band fourier: in this functi on, regular band reject functions are implemented,
+%% band fourier: 
+% in this function, regular band reject functions are implemented,
+%% Reference:
 % Gonzalez, R. C., & Woods, R. E. (2018). Digital Image Processing, 
 % Fourth Edition, Global Edition. Pearson Education Limited.
 % Chapter 3.7 HIGHPASS, BANDREJECT, AND BANDPASS FILTERS FROM LOWPASS FILTERS 
