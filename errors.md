@@ -1,4 +1,4 @@
-## Error: E001 - File not loading
+## Error: E001 - Error loading the image
 
 **Description:** 
 Error using Tiff_read
