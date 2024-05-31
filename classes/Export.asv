@@ -67,9 +67,9 @@ classdef Export
                       end
                       detAvg     = array2table(det_batch);
                       detAvg_filt = array2table(det_batch_filt);
-                      detAvg.Properties.VariableNames = {'Batch','Number','Sum Intensity',...
+                      detAvg.Properties.VariableNames = {'Number','Sum Intensity',...
                           'Mean Intensity','Image background'};
-                      detAvg_filt.Properties.VariableNames = {'Batch','Number','Sum Intensity',...
+                      detAvg_filt.Properties.VariableNames = {'Number','Sum Intensity',...
                           'Mean Intensity','Image background'};
                       if det_batch~=0
                          writetable(detAvg,strcat(tableNm,'_avg_batch','.xlsx'),'Sheet',1)
@@ -152,22 +152,22 @@ end
 function [intData] = tableAverage(det, outlier)
     switch outlier
         case 'none' % no outlier exclusion
-            N      = length(rmmissing(det.int_av));
-            sumInt = sum(rmmissing(det.int_av));
-            avgInt = mean(rmmissing(det.int_av));
+            N      = length(~isnan(det.int_av));
+            sumInt = sum(det.int_av,'omitnan');
+            avgInt = mean(det.int_av,'omitnan');
         case 'vor' % only voronoi
-            N      = length(rmmissing(det.int_av(det.outlier_vor ==1)));
-            sumInt = sum(rmmissing(det.int_av(det.outlier_vor ==1)));
-            avgInt = mean(rmmissing(det.int_av(det.outlier_vor ==1)));  
+            N      = length(~isnan(det.int_av(det.outlier_vor ==1)));
+            sumInt = sum(det.int_av(det.outlier_vor ==1),'omitnan');
+            avgInt = mean(det.int_av(det.outlier_vor ==1),'omitnan');  
         case 'dbscan' % only DBScan
-            N      = length(rmmissing(det.int_av(det.outlier_db ==1)));
-            sumInt = sum(rmmissing(det.int_av(det.outlier_db ==1)));
-            avgInt = mean(rmmissing(det.int_av(det.outlier_db ==1)));
+            N      = length(~isnan(det.int_av(det.outlier_db ==1)));
+            sumInt = sum(det.int_av(det.outlier_db ==1),'omitnan');
+            avgInt = mean(det.int_av(det.outlier_db ==1),'omitnan');
         case 'both' % both
             ind = det.outlier_db ==1 & det.outlier_vor ==1;
-            N      = length(rmmissing(det.int_av(ind)));
-            sumInt = sum(rmmissing(det.int_av(ind)));
-            avgInt = mean(rmmissing(det.int_av(ind)));
+            N      = length(~isnan(det.int_av(ind)));
+            sumInt = sum(det.int_av(ind),'omitnan');
+            avgInt = mean(det.int_av(ind),'omitnan');
     end
     intData = [N, sumInt, avgInt];
 end

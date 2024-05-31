@@ -108,14 +108,15 @@ classdef Dialogs
         end
 
         function removeOutliers(idOutliers,loc,fit,app)
-            spotsCell = matrixToCell(idOutliers,loc,fit);
-            if strcmp(loc.flag,'fr')
-                for i = 1:length(loc.idx)
-                    app.mainApp.det.Fit{loc.idx(i), 1}(:,9) = spotsCell{i,1};
+            frame = loc.fr; batch = loc.batch;
+            spotsCell = matrixToCell(idOutliers,frame,batch,fit);
+            if strcomp(loc.flag,'fr')
+                for i = 1:length(frame)
+                    app.mainApp.det.Fit{frame(i), batch}(:,9) = spotsCell{i};
                 end
-            elseif strcmp(loc.flag,'batch')
-                for i = 1:length(loc.idx)
-                    app.mainApp.det.Fit{1, loc.idx(i)}(:,9) = spotsCell{i,1};
+            elseif strcomp(loc.flag,'batch')
+                for i = 1:length(frame)
+                    app.mainApp.det.Fit{frame, batch(i)}(:,9) = spotsCell{i};
                 end
             end
         end
@@ -136,22 +137,11 @@ classdef Dialogs
     end
 end
 
-  function spotsCell = matrixToCell(idOutliers,loc,fit)
-    if strcmp(loc.flag,'fr')
-        frame = loc.idx; batch = loc.batch;
-        nbFr = length(loc.idx);
-        sizeDet = zeros(1,nbFr);
-        for i = 1:nbFr
-            sizeDet(i) = size(fit{frame(i),batch},1);
-        end
-    spotsCell = mat2cell(idOutliers,sizeDet);
-    elseif strcmp(loc.flag,'batch')
-        batch = loc.idx; frame = loc.fr;
-        nbBt = length(batch);
-        sizeDet = zeros(1,nbBt);
-        for i = 1:nbBt
-            sizeDet(i) = size(fit{frame,batch(i)},1);
-        end
-   spotsCell = mat2cell(idOutliers,sizeDet);
+  function spotsCell = matrixToCell(idOutliers,frame,batch,fit)
+    nbFr = length(frame);
+    sizeDet = zeros(1,nbFr);
+    for i = 1:nbFr
+        sizeDet(i) = size(fit{frame(i),batch},1);
     end
+   spotsCell = mat2cell(idOutliers,sizeDet);
  end
