@@ -70,14 +70,16 @@ classdef Fourier
 %                 imRaw =padarray(imRaw,[1 1],'post');
 %             end
             imFFT = (fftshift(fft2(imRaw)));
-            D0 = 0; rF = 20;
+            D0 = 0; %rF = 20;
+            %2024-10-29: make the size of rf dynamic
+            rF = round(size(imRaw,1)/15);
             % this creates the first filter to get rid of the signal in the middle%
             [~, fR1, ~] = band_fourier(D0,2*rF+1,size(imRaw));
-%             fR2 = ones(size(imRaw)); cent = ceil(size(imFFT,1)/2);
+%            fR2 = ones(size(imRaw)); cent = ceil(size(imFFT,1)/2);
 %             fR2(:,cent(1)-1:cent(1)+1)=0; fR2(cent(1)-1:cent(1)+1,:)=0;
             fftB1 = abs(imFFT.*fR1);
             % gaussian filtering which will enhance the peaks in the fourier domain
-            fftBfilt = fftB1;
+            %fftBfilt = fftB1;
             fftBfilt = imgaussfilt(fftB1,1.5);
             % use Otsu thresholding to estimate a possible threshold
             thr1 = multithresh(log(fftBfilt+1),2);
@@ -96,11 +98,10 @@ classdef Fourier
 
 
             %% Parameters for Voronoi outlier exclusion
-
-            %rN = 25; % notch Filter radius maybe too high
-            rN = 15;
+            %rN = 15;
+            rN = round(size(imRaw,1)/30);
             if ~isempty(peakL)
-                [fN, fR2, ~] = notch_filters(peakL, rN,size(imRaw));
+                
                 imFFT1 = imFFT.*fR1;
                 %imFFT1 = (fftshift(fft2(imData.imRaw)));
                 GridFFT = imFFT1.*(1-fR2);

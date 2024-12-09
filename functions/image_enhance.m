@@ -37,6 +37,10 @@ function imageEnhanced = image_enhance(imRaw,peakL,p,inv,imBr)
     imFB =  fftshift(fft2(imComp)); % Apply Fourier transform to the raw image
     GridFFT = imFB.*(1-notchG);    % Apply bandpass notch filter to the Fourier domain
     Grid = (ifft2(ifftshift(GridFFT))); % Inverse Fourier transform to obtain the grid
+    % if the grid is complex, take the absolute value
+    if ~isreal(Grid)
+        Grid = abs(Grid);
+    end
     % Scale and invert the enhanced image if required
     if inv == 1
        imGr = 1 - rescale(Grid);

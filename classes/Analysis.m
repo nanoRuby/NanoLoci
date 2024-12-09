@@ -66,6 +66,7 @@ classdef Analysis
             for j=1:nBatch
                 for i = 1:nFrames
                  im = images.imRawCurr(:,:,i,j);
+                 if ~isempty(localizations{i,j})
                  xLoc = localizations{i,j}(:,1);
                  yLoc = localizations{i,j}(:,2);
                  [ampS,~,~,bg]= amp_calc(im,xLoc,yLoc,wind,wind);
@@ -81,7 +82,8 @@ classdef Analysis
                  if roi == 1 && isfield(images,'imROI')
                     roiIm = images.imROI.*im;
                     intensities.roi(i,j) = mean(roiIm(roiIm ~=0));
-                 end   
+                 end
+                 end
                 end
             end
         end

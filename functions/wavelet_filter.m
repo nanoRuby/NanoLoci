@@ -42,7 +42,7 @@ for j = 1:size(imageRaw,3)
     % add padding to increase image size so the detections on the borders
     % are not lost
     im = padarray(im, [borderSize, borderSize], 'replicate');
-    % I = medfilt2(im,[2 2]);
+    %im = medfilt2(im,[2 2]);
     C1 = conv2(im,filter1,'same'); % the first coefficient map
     C2 = conv2(C1,filter2,'same'); % the second coefficient map 
     

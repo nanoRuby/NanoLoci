@@ -62,7 +62,7 @@ classdef Export
                       writetable(det_t_avg_v,strcat(tableNm,'.xlsx'),'Sheet',3);
                        
                       if size(imAll,3) == 1
-                          det_batch(j,:)=[j,tableAverage(detAll,'none'),bgInt];
+                          det_batch(j,:)     =[j,tableAverage(detAll,'none'),bgInt];
                           det_batch_filt(j,:)=[j,tableAverage(detAll,'both'),bgInt]; 
                       end
                       detAvg     = array2table(det_batch);
